@@ -6,7 +6,7 @@ require (
 	github.com/bbmumford/argus v0.0.0
 	github.com/bbmumford/buildinfo v0.0.0
 	github.com/bbmumford/cfgload v0.0.0
-	github.com/bbmumford/envreq v0.0.0
+	github.com/bbmumford/envreq v0.0.1
 )
 
 require (
