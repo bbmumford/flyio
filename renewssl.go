@@ -115,9 +115,26 @@ mutation($app:String!,$hostname:String!){
 }`,
 		Variables: map[string]interface{}{"app": app, "hostname": hostname},
 	}
-	var sink struct{ Data json.RawMessage }
-	if err := doGraphQL(ctx, token, req, &sink); err != nil {
+	// A GraphQL failure arrives with status 200: the renewal is done only when
+	// the reply carries no errors and renewCertificate reports success.
+	var reply struct {
+		Data struct {
+			RenewCertificate *struct {
+				Success bool `json:"success"`
+			} `json:"renewCertificate"`
+		} `json:"data"`
+		Errors []struct {
+			Message string `json:"message"`
+		} `json:"errors"`
+	}
+	if err := doGraphQL(ctx, token, req, &reply); err != nil {
 		return fmt.Errorf("renewal for %s: %w", hostname, err)
+	}
+	if len(reply.Errors) > 0 {
+		return fmt.Errorf("renewal for %s: %s", hostname, reply.Errors[0].Message)
+	}
+	if reply.Data.RenewCertificate == nil || !reply.Data.RenewCertificate.Success {
+		return fmt.Errorf("renewal for %s: the API did not report success", hostname)
 	}
 	return nil
 }
