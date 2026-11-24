@@ -48,3 +48,16 @@ func TestRenewCertReadsTheReply(t *testing.T) {
 		t.Fatalf("a reported success: %v", err)
 	}
 }
+
+// A nil error callback does not panic: each failure is logged instead.
+func TestStartAutoRenewWithANilErrorCallback(t *testing.T) {
+	useFly(t, flyReplies{expiry: `{"data":{"app":{"certificate":{"issued":{"nodes":[]}}}}}`})
+	ctx, cancel := context.WithCancel(context.Background())
+	cancel()
+	defer func() {
+		if p := recover(); p != nil {
+			t.Fatalf("StartAutoRenew panicked with a nil error callback: %v", p)
+		}
+	}()
+	StartAutoRenew(ctx, "tok", "app", []string{"example.com"}, nil)
+}

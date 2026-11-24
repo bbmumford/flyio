@@ -152,8 +152,12 @@ mutation($app:String!,$hostname:String!){
 // token: Fly.io API token
 // app:   Fly.io app name
 // hostnames: slice of hostnames whose certs should be monitored
-// onError: callback invoked when an expiry fetch or renewal fails (non-blocking)
+// onError: callback invoked when an expiry fetch or renewal fails (non-blocking);
+// nil logs each failure instead
 func StartAutoRenew(ctx context.Context, token, app string, hostnames []string, onError func(error)) {
+	if onError == nil {
+		onError = func(err error) { log.Printf("SSL auto-renew: %v", err) }
+	}
 	log.Println("🔄 Starting SSL auto-renew…")
 	// normalize hostnames
 	hosts := make([]string, 0, len(hostnames))
