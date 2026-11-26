@@ -65,7 +65,9 @@ func doGraphQL(ctx context.Context, token string, req gqlRequest, out interface{
 	if err != nil {
 		return fmt.Errorf("http do: %w", err)
 	}
-	defer resp.Body.Close()
+	// By the time this runs the response is decoded or refused; a failed close
+	// of its body changes neither, so the close error is dropped.
+	defer func() { _ = resp.Body.Close() }()
 
 	if resp.StatusCode != http.StatusOK {
 		return fmt.Errorf("bad status: %s", resp.Status)
