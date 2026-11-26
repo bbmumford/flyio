@@ -1,3 +1,11 @@
+github.com/bbmumford/argus v0.1.0 h1:q30qW8TDOVFgB17Gq50m5Ho4X+/CzgyMgEI8lbyUzFI=
+github.com/bbmumford/argus v0.1.0/go.mod h1:DkONyNcY1p8+TbVoxONo4RUEwS25juOnY+nbM/8Bfrs=
+github.com/bbmumford/buildinfo v0.1.0 h1:aPrmJzdeGfVbaAVSd72oDLbOQMK727bWsUtd4DSxz5A=
+github.com/bbmumford/buildinfo v0.1.0/go.mod h1:ogeIrzQiATmHWGC0UaGFAix2ZaFftgZbGTWT9W9+Fws=
+github.com/bbmumford/cfgload v0.2.0 h1:5RlrgreIY+WK2j4pJiIb3dVqv7mNdfRJku/M22aMlaU=
+github.com/bbmumford/cfgload v0.2.0/go.mod h1:8egU8qpEs0ZWt5A3OK0r8wa9Qns3BOb8hyj3SwORNEY=
+github.com/bbmumford/envreq v0.0.2 h1:ENIa7SzG/ws14Zw2c3HwsvdJC8R5cSPbRHVz5mQ0bQA=
+github.com/bbmumford/envreq v0.0.2/go.mod h1:KrpBPleRbYyIl02gjgQmMbJIwhjJqDnZmV9F0N+8GcI=
 github.com/creack/pty v1.1.9/go.mod h1:oKZEueFk5CKHvIhNR5MUki03XCEU+Q6VDXinZuGJ33E=
 github.com/kr/pretty v0.3.1 h1:flRD4NNwYAUpkphVc1HcthR4KEIFJ65n8Mw5qdRn3LE=
 github.com/kr/pretty v0.3.1/go.mod h1:hoEshYVHaxMs3cyo3Yncou5ZscifuDolrwPKZanG3xk=
